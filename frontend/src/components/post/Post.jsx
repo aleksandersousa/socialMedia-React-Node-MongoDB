@@ -5,6 +5,7 @@ import { MoreVert } from '@material-ui/icons';
 import { Users } from '../../dummyData';
 
 export default function Post({ post }) {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [ like, setLike ] = useState(post.like);
   const [ isLiked, setIsLiked ] = useState(false);
 
@@ -32,8 +33,8 @@ export default function Post({ post }) {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img src="/assets/like.png" onClick={likeHandler} alt="" className="likeIcon" />
-            <img src="/assets/heart.png" onClick={likeHandler} alt="" className="likeIcon" />
+            <img src={PF+"like.png"} onClick={likeHandler} alt="" className="likeIcon" />
+            <img src={PF+"heart.png"} onClick={likeHandler} alt="" className="likeIcon" />
             <span className="postLikeCounter">{like} people like it</span>
           </div>
           <div className="postBottomRight">
