@@ -10,11 +10,11 @@ export default function Home() {
   return (
     <div className="home">
       <Topbar />
-      <body className="homeBody">
+      <div className="homeBody">
         <Sidebar />
         <Feed />
         <Rightbar />
-      </body>
+      </div>
     </div>
   );
 }

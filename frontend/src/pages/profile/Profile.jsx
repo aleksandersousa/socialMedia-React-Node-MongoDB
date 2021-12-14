@@ -12,7 +12,7 @@ export default function Profile() {
   return (
     <div className="profile">
       <Topbar />
-      <body className="profileBody">
+      <div className="profileBody">
         <Sidebar />
         <div className="profileRight">
           <div className="profileRightTop">
@@ -30,7 +30,7 @@ export default function Profile() {
             <Rightbar profile/>
           </div>
         </div>
-      </body>
+      </div>
     </div>
   );
 }
