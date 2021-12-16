@@ -1,8 +1,13 @@
 import RoutesLogic from "./RoutesLogic";
 import './App.css'
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
-  return <RoutesLogic />
+  return (
+    <AuthContextProvider >
+      <RoutesLogic />
+    </AuthContextProvider>
+  );
 }
 
 export default App;
