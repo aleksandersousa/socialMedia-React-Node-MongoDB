@@ -70,7 +70,14 @@
     color: #1775ee;
 }
 
-.loginRegisterButton{
+.loginRegisterLink {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-decoration: none;
+}
+
+.loginRegisterButton {
     width: 60%;
     align-self: center;
     height: 50px;
