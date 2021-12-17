@@ -33,6 +33,7 @@ export default function Share() {
             img: res.data.data.url
           };
           await axios.post('/posts', newPost);
+          window.location.reload();
         } catch (err) {
           console.log(err);
         }
