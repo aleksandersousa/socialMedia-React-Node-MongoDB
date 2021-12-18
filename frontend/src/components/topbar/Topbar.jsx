@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Topbar.css';
 
-import { Search, Person, Chat, Notifications } from '@material-ui/icons';
+import { Person, Chat, Notifications } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
 import { AuthContext } from  '../../context/AuthContext';
+import Searchbar from '../searchbar/Searchbar';
 
 export default function Topbar() {
   const { user, authActions } = useContext(AuthContext);
@@ -22,10 +22,7 @@ export default function Topbar() {
         </Link>
       </div>
       <div className="topbarCenter">
-        <div className="searchbar">
-          <Search className="searchIcon"/>
-          <input placeholder="Search for friends, posts or videos" className="searchInput" />
-        </div>
+        <Searchbar />
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">

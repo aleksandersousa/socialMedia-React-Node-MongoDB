@@ -25,23 +25,9 @@
   flex: 5;
 }
 
-.searchbar {
-  width: 100%;
-  height: 30px;
-  background-color: white;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-}
-
 .searchIcon {
   font-size: 20px !important;
   margin-left: 10px;
-}
-
-.searchInput {
-  border: none;
-  width: 70%;
 }
 
 .searchInput:focus {

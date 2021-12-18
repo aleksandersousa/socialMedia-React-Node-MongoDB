@@ -1,0 +1,12 @@
+.searchInput {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.textInput {
+  font-size: 15px;
+}

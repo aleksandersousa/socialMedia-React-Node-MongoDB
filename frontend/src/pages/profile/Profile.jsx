@@ -17,7 +17,7 @@ export default function Profile() {
   const API_KEY = process.env.REACT_APP_IMGBB_API_KEY;
   const [ user, setUser ] = useState({});
   const [ file, setFile ] = useState(null);
-  const { user: currentUser, authActions } = useContext(AuthContext);
+  const { authActions } = useContext(AuthContext);
   const { username } = useParams();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function Profile() {
       setUser(res.data);
     }
     fetchUser();
-  },[username]);
+  }, [username]);
 
   const handleClick = () => {
     if (file) {
