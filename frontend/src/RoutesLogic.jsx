@@ -16,7 +16,7 @@ export default function RoutesLogic() {
       <Routes>
         <Route exact path="/" element={user ? <Home /> : <Login />}/>
         <Route path="login" element={user ? <Navigate to="/" /> : <Login />}/>
-        <Route path="profile/:username" element={<Profile />}/>
+        <Route path="profile/:username" element={user ? <Profile /> : <Login />}/>
         <Route path="register" element={user ? <Navigate to="/" /> : <Register />}/>
       </Routes>
     </Router>
