@@ -23,7 +23,7 @@ const AuthReducer = (state, action) => {
         ...state,
         user: {
           ...state.user,
-          followings: state.user.followings.filter((following) => following !== action.payload)
+          followings: [...state.user.followings, action.payload]
         }
       };
     case 'UNFOLLOW':
@@ -31,9 +31,22 @@ const AuthReducer = (state, action) => {
         ...state,
         user: {
           ...state.user,
-          followings: [...state.user.followings, action.payload]
+          followings: state.user.followings.filter((following) => following !== action.payload)
         }
       };
+    case 'UPDATE_STORAGE':
+      return {
+        ...state,
+        user: { 
+          ...state.user,
+          profilePicture: action.payload
+        }
+      }
+    case 'LOGOUT':
+      return {
+        ...state,
+        user: action.payload
+      }
     default:
       return state;
   }

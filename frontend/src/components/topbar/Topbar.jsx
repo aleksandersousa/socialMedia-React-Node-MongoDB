@@ -7,8 +7,12 @@ import { useContext } from 'react';
 import { AuthContext } from  '../../context/AuthContext';
 
 export default function Topbar() {
-  const { user } = useContext(AuthContext);
+  const { user, authActions } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  
+  const handleClick = () => {
+    authActions.logout();
+  }
 
   return (
     <div className="topbarContainer">
@@ -26,7 +30,7 @@ export default function Topbar() {
       <div className="topbarRight">
         <div className="topbarLinks">
           <span className="topbarLink">Homepage</span>
-          <span className="topbarLink">Timeline</span>
+          <span className="topbarLink" onClick={handleClick}>Logout</span>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
@@ -43,10 +47,7 @@ export default function Topbar() {
           </div>
         </div>
         <Link to={`/profile/${user.username}`}>
-          <img src={user.profilePicture 
-            ? user.profilePicture 
-            : PF + 'person/noAvatar.png'
-          } alt="" className="topbarImg" />
+          <img src={user.profilePicture ? user.profilePicture : PF + 'person/noAvatar.png'} alt="" className="topbarImg" />
         </Link>
       </div>
     </div>

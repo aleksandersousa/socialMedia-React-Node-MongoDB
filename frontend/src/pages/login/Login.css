@@ -89,3 +89,10 @@
   font-weight: 500;
   cursor: pointer;
 }
+
+.registerButtonLink {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-decoration: none;
+}

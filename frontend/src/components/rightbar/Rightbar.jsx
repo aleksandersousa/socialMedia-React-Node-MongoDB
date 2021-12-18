@@ -88,7 +88,7 @@ export default function Rightbar({ user }) {
           {friends.map((friend) => (
             <Link to={"/profile/"+friend.username} style={{"textDecoration": "none"}}>
               <div className="rightbarFollowing">
-                <img src={friend.profilePicture ? PF + friend.profilePicture : PF + 'person/noAvatar.png'} alt="" className="rightbarFollowingImg" />
+                <img src={friend.profilePicture ? friend.profilePicture : PF + 'person/noAvatar.png'} alt="" className="rightbarFollowingImg" />
                 <span className="followingName">{friend.username}</span>
               </div>
             </Link>

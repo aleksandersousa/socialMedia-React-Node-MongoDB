@@ -11,6 +11,20 @@
   position: relative;
 }
 
+.coverImgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ImgContainerIcon {
+  position: absolute;
+  margin-left: 65px;
+  margin-top: 307px;
+  z-index: 2;
+}
+
 .profileCoverImg {
   width: 100%;
   height: 250px;
@@ -46,4 +60,36 @@
 
 .profileRightBottom {
   display: flex;
+}
+
+.previewProfileContainer {
+  padding: 0 20px 10px 20px;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 152px;
+  margin: auto;
+  display: flex;
+}
+
+.profileImg {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.profileAddImg {
+  position: absolute;
+  cursor: pointer;
+}
+
+.profileCancelImg {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.7;
 }
