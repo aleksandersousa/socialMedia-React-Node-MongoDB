@@ -10,9 +10,9 @@ import { Add, Remove } from '@material-ui/icons';
 
 export default function Rightbar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [ friends, setFriends ] = useState([]);
   const { user: currentUser, authActions } = useContext(AuthContext);
-  const [ followed, setFollowed ] = useState(currentUser.followings.includes(user?.id));
+  const [ friends, setFriends ] = useState([]);
+  const [ followed, setFollowed ] = useState(false);
 
   useEffect(() => {
     const getFriends = async () => {
@@ -24,7 +24,7 @@ export default function Rightbar({ user }) {
       }
     };
     getFriends();
-  }, [user?._id]);
+  }, [user]);
 
   const handleClick = async () => {
     try {
@@ -60,6 +60,7 @@ export default function Rightbar({ user }) {
   }
 
   const ProfileRightbar = () => {
+    setFollowed(currentUser.followings.includes(user._id));
     return (
       <>
         {user.username !== currentUser.username && (
@@ -86,7 +87,7 @@ export default function Rightbar({ user }) {
         <h4 className="rightbarTitle">User friends</h4>
         <div className="rightbarFollowings">
           {friends.map((friend) => (
-            <Link to={"/profile/"+friend.username} style={{"textDecoration": "none"}}>
+            <Link key={friend._id} to={"/profile/"+friend.username} style={{"textDecoration": "none"}}>
               <div className="rightbarFollowing">
                 <img src={friend.profilePicture ? friend.profilePicture : PF + 'person/noAvatar.png'} alt="" className="rightbarFollowingImg" />
                 <span className="followingName">{friend.username}</span>
@@ -96,7 +97,7 @@ export default function Rightbar({ user }) {
         </div>
       </>
     );
-  }
+  };
 
   return(
     <div className="rightbar">

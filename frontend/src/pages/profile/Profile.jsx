@@ -17,7 +17,7 @@ export default function Profile() {
   const API_KEY = process.env.REACT_APP_IMGBB_API_KEY;
   const [ user, setUser ] = useState({});
   const [ file, setFile ] = useState(null);
-  const { authActions } = useContext(AuthContext);
+  const { user: currentUser, authActions } = useContext(AuthContext);
   const { username } = useParams();
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Profile() {
             profilePicture: res.data.data.url,
           };
           await axios.put('/users/' + user._id, updatedUser);
-          authActions.updateStorage(res.data.data.url);
+          authActions.updateStorage(updatedUser);
           window.location.reload();
         } catch (err) {
           console.log(err);
@@ -61,10 +61,12 @@ export default function Profile() {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
-              <label htmlFor="profileFile" className="coverImgContainer">
-                <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
-                <AddAPhoto className="ImgContainerIcon" />
-              </label>
+              {user.username !== currentUser.username
+                ? <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
+                : (<label htmlFor="profileFile" className="coverImgContainer">
+                  <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
+                  <AddAPhoto className="ImgContainerIcon" />
+                  </label>)}
               <img src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.png"} alt="" className="profileUserImg" />
               <input style={{"display": "none"}} type="file" id="profileFile" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} />
               {file && (

@@ -38,8 +38,8 @@ const AuthReducer = (state, action) => {
       return {
         ...state,
         user: { 
-          ...state.user,
-          profilePicture: action.payload
+          ...state,
+          user: action.payload
         }
       }
     case 'LOGOUT':
