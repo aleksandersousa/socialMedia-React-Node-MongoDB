@@ -7,7 +7,7 @@ import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Feed from '../../components/feed/Feed';
 import Rightbar from '../../components/rightbar/Rightbar';
-import { AddAPhoto, AddCircle, Cancel } from '@material-ui/icons';
+import { AddAPhoto, AddCircle, Cancel, PhotoCamera } from '@material-ui/icons';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -61,7 +61,20 @@ export default function Profile() {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
-              <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
+              {user.username !== currentUser.username
+                ? <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
+                : (
+                  <div className="coverPictureContainer">
+                    <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
+                      <button className="changeCoverPictureButton" onClick={() => {
+                        document.getElementById('coverFile').click();
+                      }}>
+                        Change cover picture
+                        <PhotoCamera className="changeCoverButtonIcon"/>
+                        <input style={{"display": "none"}} type="file" id="coverFile" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} />
+                      </button>
+                  </div>
+              )}
               {user.username !== currentUser.username 
                 ? <img src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.png"} alt="" className="profileUserImg" />
                 : (
