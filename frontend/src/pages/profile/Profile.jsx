@@ -61,13 +61,15 @@ export default function Profile() {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
-              {user.username !== currentUser.username
-                ? <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
-                : (<label htmlFor="profileFile" className="coverImgContainer">
-                  <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
-                  <AddAPhoto className="ImgContainerIcon" />
-                  </label>)}
-              <img src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.png"} alt="" className="profileUserImg" />
+              <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
+              {user.username !== currentUser.username 
+                ? <img src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.png"} alt="" className="profileUserImg" />
+                : (
+                  <label htmlFor="profileFile" className="coverImgContainer">
+                    <AddAPhoto className="ImgContainerIcon" />
+                    <img src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.png"} alt="" className="profileUserImg" />
+                  </label>
+              )}
               <input style={{"display": "none"}} type="file" id="profileFile" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} />
               {file && (
                 <div className="previewProfileContainer">
