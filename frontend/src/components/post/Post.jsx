@@ -42,10 +42,10 @@ export default function Post({ post }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`profile/${user.username}`}>
+            <Link to={`profile/${user.username}`} className="postLink">
               <img src={user.profilePicture ? user.profilePicture : PF+"person/noAvatar.png"} alt="" className="postProfileImg" />
+              <span className="postUsername">{user.username}</span>
             </Link>
-            <span className="postUsername">{user.username}</span>
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
@@ -63,7 +63,7 @@ export default function Post({ post }) {
             <span className="postLikeCounter">{like} people like it</span>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText">{post.comment} comments</span>
+            <span className="postCommentText">5 comments</span>
           </div>
         </div>
       </div>
