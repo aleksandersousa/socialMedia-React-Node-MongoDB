@@ -4,4 +4,13 @@
 
 .feedWrapper {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedProgressBar {
+  color: beige;
+  margin-top: 150px;
 }
