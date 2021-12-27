@@ -60,9 +60,10 @@ export default function Rightbar({ user }) {
   }
 
   const ProfileRightbar = () => {
-    if (currentUser) {
+    useEffect(() => {
       setFollowed(currentUser.followings.includes(user._id));
-    }
+    }, [])
+    
     return (
       <>
         {user.username !== currentUser.username && (

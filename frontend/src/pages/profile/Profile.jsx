@@ -42,14 +42,17 @@ export default function Profile() {
           const res = await axios.post(IMGBB_URL, data, { params: { key: API_KEY } });
           const updatedUser = cover 
             ? {
+                ...user,
                 userId: user._id,
                 coverPicture: res.data.data.url,
               }
             : {
+              ...user,
               userId: user._id,
               profilePicture: res.data.data.url,
             }
           await axios.put('/users/' + user._id, updatedUser);
+          delete updatedUser['userId'];
           authActions.updateStorage(updatedUser);
           window.location.reload();
         } catch (err) {
@@ -120,7 +123,7 @@ export default function Profile() {
                 <div className="previewProfileContainer">
                   <img src={URL.createObjectURL(fileProfile)} alt="" className="profileImg" />
                   <Cancel style={{"color": "red"}} className="profileCancelImg" onClick={() => setFileProfile(null)} />
-                  <AddCircle style={{"color": "green"}} className="profileAddImg" onClick={handleClick} />
+                  <AddCircle style={{"color": "green"}} className="profileAddImg" onClick={() => handleClick(false)} />
                 </div>
               )}
             </div>

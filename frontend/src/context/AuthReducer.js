@@ -37,10 +37,7 @@ const AuthReducer = (state, action) => {
     case 'UPDATE_STORAGE':
       return {
         ...state,
-        user: { 
-          ...state,
-          user: action.payload
-        }
+        user: action.payload
       }
     case 'LOGOUT':
       return {

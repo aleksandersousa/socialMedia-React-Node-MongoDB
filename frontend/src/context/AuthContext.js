@@ -23,7 +23,7 @@ export const AuthContextProvider = ({ children }) => {
     follow: (userId) => dispatch({ type: 'FOLLOW', payload: userId }),
     unfollow: (userId) => dispatch({ type: 'UNFOLLOW', payload: userId }),
     updateStorage: (user) => dispatch({ type: 'UPDATE_STORAGE', payload: user }),
-    logout: () =>dispatch({ type: 'LOGOUT', payload: null})
+    logout: () => dispatch({ type: 'LOGOUT', payload: null})
   };
 
   return (

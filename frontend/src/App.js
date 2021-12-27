@@ -1,5 +1,7 @@
+import React from "react";
+import './App.css';
+
 import RoutesLogic from "./RoutesLogic";
-import './App.css'
 import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
