@@ -5,6 +5,7 @@ import { AuthContext } from './context/AuthContext';
 
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
+import Messenger from './pages/messenger/Messenger';
 import Profile from './pages/profile/Profile';
 import Register from './pages/register/Register';
 
@@ -16,8 +17,9 @@ export default function RoutesLogic() {
       <Routes>
         <Route exact path="/" element={user ? <Home /> : <Login />}/>
         <Route path="login" element={user ? <Navigate to="/" /> : <Login />}/>
-        <Route path="profile/:username" element={user ? <Profile /> : <Navigate to="/login" />}/>
         <Route path="register" element={user ? <Navigate to="/" /> : <Register />}/>
+        <Route path="messenger" element={!user ? <Navigate to="/" /> : <Messenger />}/>
+        <Route path="profile/:username" element={user ? <Profile /> : <Navigate to="/login" />}/>
       </Routes>
     </Router>
   );

@@ -9,9 +9,9 @@ import { AuthContext } from '../../context/AuthContext';
 
 export default function Home() {
   const { authActions } = useContext(AuthContext);
-  window.addEventListener('beforeunload', () => {
-    authActions.logout();
-  });
+  // window.addEventListener('beforeunload', () => {
+  //   authActions.logout();
+  // });
 
   return (
     <div className="home">
