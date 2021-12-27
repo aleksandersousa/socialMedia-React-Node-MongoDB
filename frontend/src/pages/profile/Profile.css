@@ -121,3 +121,40 @@
 .changeCoverButtonIcon {
   margin-left: 5px;
 }
+
+.previewCoverContainer {
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.coverCancelImg {
+  padding: 5px 15px;
+  margin-right: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #E43333;
+  -webkit-box-shadow: -1px 5px 16px 1px rgba(0,0,0,0.46); 
+  box-shadow: -1px 5px 16px 1px rgba(0,0,0,0.46);
+  cursor: pointer;
+}
+
+.coverAddImg {
+  padding: 5px 15px;
+  margin-right: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #68BE10;
+  -webkit-box-shadow: -1px 5px 16px 1px rgba(0,0,0,0.46); 
+  box-shadow: -1px 5px 16px 1px rgba(0,0,0,0.46);
+  cursor: pointer;
+}

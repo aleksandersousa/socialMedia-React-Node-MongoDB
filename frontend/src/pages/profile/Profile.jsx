@@ -16,7 +16,8 @@ export default function Profile() {
   const IMGBB_URL = process.env.REACT_APP_IMGBB_URL;
   const API_KEY = process.env.REACT_APP_IMGBB_API_KEY;
   const [ user, setUser ] = useState({});
-  const [ file, setFile ] = useState(null);
+  const [ fileProfile, setFileProfile ] = useState(null);
+  const [ fileCover, setFileCover ] = useState(null);
   const { user: currentUser, authActions } = useContext(AuthContext);
   const { username } = useParams();
 
@@ -28,21 +29,26 @@ export default function Profile() {
     fetchUser();
   }, [username]);
 
-  const handleClick = () => {
-    if (file) {
+  const handleClick = (cover) => {
+    if (fileProfile || fileCover) {
       let data = new FormData();
       let fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
+      fileReader.readAsDataURL(cover ? fileCover : fileProfile);
       fileReader.onload = async () => {
         let base64 = fileReader.result;
         base64 = base64.replace(/^data:image\/[a-z]+;base64,/, '');
         data.append('image', base64);
         try {
           const res = await axios.post(IMGBB_URL, data, { params: { key: API_KEY } });
-          const updatedUser = {
-            userId: user._id,
-            profilePicture: res.data.data.url,
-          };
+          const updatedUser = cover 
+            ? {
+                userId: user._id,
+                coverPicture: res.data.data.url,
+              }
+            : {
+              userId: user._id,
+              profilePicture: res.data.data.url,
+            }
           await axios.put('/users/' + user._id, updatedUser);
           authActions.updateStorage(updatedUser);
           window.location.reload();
@@ -63,18 +69,39 @@ export default function Profile() {
             <div className="profileCover">
               {user.username !== currentUser.username
                 ? <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
-                : (
-                  <div className="coverPictureContainer">
-                    <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
-                      <button className="changeCoverPictureButton" onClick={() => {
-                        document.getElementById('coverFile').click();
-                      }}>
-                        Change cover picture
-                        <PhotoCamera className="changeCoverButtonIcon"/>
-                        <input style={{"display": "none"}} type="file" id="coverFile" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} />
-                      </button>
-                  </div>
-              )}
+                : fileCover
+                  ? (
+                    <>
+                      <div className="previewCoverContainer">
+                        <div></div>
+                        <button className="coverCancelImg" onClick={() => setFileCover(null)}>
+                          Cancelar
+                        </button>
+                        <button className="coverAddImg" onClick={() => handleClick(true)}>
+                          Salvar Alterações
+                        </button>
+                      </div>
+                      <img src={URL.createObjectURL(fileCover)} alt="" className="profileCoverImg" />
+                    </>
+                  )
+                  : (
+                    <div className="coverPictureContainer">
+                      <img src={user.coverPicture ? user.coverPicture : PF + "person/noCover.png"} alt="" className="profileCoverImg" />
+                        <button className="changeCoverPictureButton" onClick={() => {
+                          document.getElementById('coverFile').click();
+                        }}>
+                          Change cover picture
+                          <PhotoCamera className="changeCoverButtonIcon"/>
+                          <input 
+                            style={{"display": "none"}} 
+                            type="file" id="coverFile" 
+                            accept=".png, .jpeg, .jpg" 
+                            onChange={(e) => setFileCover(e.target.files[0])} 
+                          />
+                        </button>
+                    </div>
+                  )
+              }
               {user.username !== currentUser.username 
                 ? <img src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.png"} alt="" className="profileUserImg" />
                 : (
@@ -83,11 +110,16 @@ export default function Profile() {
                     <img src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.png"} alt="" className="profileUserImg" />
                   </label>
               )}
-              <input style={{"display": "none"}} type="file" id="profileFile" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} />
-              {file && (
+              <input 
+                style={{"display": "none"}} 
+                type="file" id="profileFile" 
+                accept=".png, .jpeg, .jpg" 
+                onChange={(e) => setFileProfile(e.target.files[0])} 
+              />
+              {fileProfile && (
                 <div className="previewProfileContainer">
-                  <img src={URL.createObjectURL(file)} alt="" className="profileImg" />
-                  <Cancel style={{"color": "red"}} className="profileCancelImg" onClick={() => setFile(null)} />
+                  <img src={URL.createObjectURL(fileProfile)} alt="" className="profileImg" />
+                  <Cancel style={{"color": "red"}} className="profileCancelImg" onClick={() => setFileProfile(null)} />
                   <AddCircle style={{"color": "green"}} className="profileAddImg" onClick={handleClick} />
                 </div>
               )}
