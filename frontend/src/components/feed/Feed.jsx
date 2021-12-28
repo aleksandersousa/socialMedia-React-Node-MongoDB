@@ -26,8 +26,6 @@ export default function Feed({ username }) {
     fetchPosts();
   },[username, user._id]);
 
-  console.log(isLoading);
-
   return(
     <div className="feed">
       <div className="feedWrapper">
