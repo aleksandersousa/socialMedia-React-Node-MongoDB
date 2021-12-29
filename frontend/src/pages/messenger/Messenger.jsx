@@ -40,9 +40,9 @@ export default function Messenger() {
   useEffect(() => {
     socket.current.emit('addUser', user._id);
     socket.current.on('getOnlineUsers', (users) => {
-      setOnlineUsers(users);
+      setOnlineUsers(user.followings.filter(f => users.some(u => u.userId === f)));
     });
-  }, [user._id]);
+  }, [user]);
 
   useEffect(() => {
     const getConversations = async () => {
