@@ -8,6 +8,7 @@ import ChatOnline from "../../components/chatOnline/ChatOnline";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { io } from 'socket.io-client';
+import { Search } from "@material-ui/icons";
 
 export default function Messenger() {
   const [ conversations, setConversations ] = useState([]);
@@ -103,7 +104,10 @@ export default function Messenger() {
       <div className="messengerBody">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Search for friends" className="chatMenuInput" />
+            <div className="chatMenuSearchbar">
+              <input placeholder="Search for friends" className="chatMenuInput" />
+              <Search className="chatMenuIcon"/>
+            </div>
             {conversations.map((c) => {
               return (
                 <div key={c._id} onClick={() => setCurrentChat(c)}>
