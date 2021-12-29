@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import './Messenger.css';
 
 import Topbar from '../../components/topbar/Topbar';
@@ -17,6 +18,7 @@ export default function Messenger() {
   const [ currentChat, setCurrentChat ] = useState(null);
   const [ arrivalMessage, setArrivalMessage ] = useState(null);
   const [ newMessage, setNewMessage ] = useState('');
+  const { state } = useLocation();
   const { user } = useContext(AuthContext);
   const socket =  useRef();
   const scrollRef = useRef();
@@ -72,6 +74,10 @@ export default function Messenger() {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  useEffect(() => {
+    state && setCurrentChat(state);
+  }, [state]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

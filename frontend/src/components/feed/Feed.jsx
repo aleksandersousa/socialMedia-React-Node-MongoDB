@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './Feed.css';
-import { useEffect } from 'react';
 import axios from 'axios';
 
 import Post from '../post/Post';

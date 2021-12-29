@@ -22,7 +22,7 @@ export default function Message({userId, message, own }) {
     <div className={own ? "message own" : "message"}>
       <div className="messageTop">
         <img 
-          src={user?.profilePicture ? user?.profilePicture : PF + 'persons/noAvatar.png'} 
+          src={user?.profilePicture ? user?.profilePicture : PF + 'person/noAvatar.png'} 
           alt="" 
           className="messageImg" 
         />
